@@ -1,0 +1,119 @@
+
+<form >
+{{test}}
+	<div class="row">
+			<div class="col-xs-3">
+				<label>Username/Email</label>
+			</div>
+			<div class="col-xs-6">
+					<input type="text" class="form-control" [(ng-model)]="model.username"/>
+			</div>
+	</div>
+	<div class="row">
+			<div class="col-xs-3">
+				<label>Password</label>
+			</div>
+			<div class="col-xs-6">
+					<input type="password" class="form-control" [(ng-model)]="model.password"/>
+			</div>
+	</div>
+	<div class="row">
+			<div class="col-xs-3">
+				<label>Confirm</label>
+			</div>
+			<div class="col-xs-6">
+					<input type="password" class="form-control" [(ng-model)]="model.confirm"/>
+			</div>
+	</div>
+	<div class="row">
+			<div class="col-xs-3">
+					<label>Title</label>
+			</div>
+			<div class="col-xs-6">
+					<select class="form-control">
+						<option *ng-for = "#item of titles" value="{{item.code}}">{{item.text}}</option>
+					</select>
+			</div>
+	</div>
+	<div class="row">
+			<div class="col-xs-3">
+					<label>FirstName</label>
+			</div>
+			<div class="col-xs-6">
+					<input type="text" class="form-control" [(ng-model)]="model.firstName" />
+
+			</div>
+	</div>
+	<div class="row">
+			<div class="col-xs-3">
+					<label>LastName</label>
+			</div>
+			<div class="col-xs-6">
+					<input type="text" class="form-control" [(ng-model)]="model.lastName" />
+
+			</div>
+	</div>
+	<div class="row">
+			<div class="col-xs-3">
+					<label>Province</label>
+			</div>
+			<div class="col-xs-6">
+					<select class="form-control" (change)="provinceChange()" [(ng-model)]="model.province">
+						<option *ng-for="#item of provinces" value="{{item.code}}" >{{item.text}}</option>
+					</select>
+
+			</div>
+	</div>
+	<div class="row">
+			<div class="col-xs-3">
+					<label>Amphur</label>
+			</div>
+			<div class="col-xs-6">
+					<select class="form-control">
+						<option *ng-for="#item of amphurs" value="{{item.code}}">{{item.text}}</option>
+					</select>
+
+			</div>
+	</div>
+	<div class="row">
+			<div class="col-xs-3">
+					<label>Marital Status</label>
+			</div>
+			<div class="col-xs-6">
+					<radiolistbox [(cb-list)]="maritals" [(cb-model)]="model.marital" cb-name="marital" ></radiolistbox>
+			</div>
+	</div>
+	<div class="row">
+			<div class="col-xs-3">
+					<label>Gender</label>
+			</div>
+			<div class="col-xs-6">
+				<radiolistbox [(cb-list)]="genders" [(cb-model)]="model.gender" cb-name="gender" cb-display="text" cb-value="code"/>
+			</div>
+	</div>
+	<div class="row">
+			<div class="col-xs-3">
+					<label>Hobbies</label>
+			</div>
+			<div class="col-xs-6">
+					<checklistbox [(cb-list)]="hobbies" [(cb-model)]="model.hobbies" cb-value="code" cb-display="text"></checklistbox>
+			</div>
+	</div>
+	<div class="row">
+			<div class="col-xs-3">
+				<label>Role</label>
+			</div>
+			<div class="col-xs-6">
+			
+				<checklistbox [(cb-list)]="roles" [(cb-model)]="model.roles"  ></checklistbox>
+	
+			</div>
+	</div>
+
+	<div class="row">
+			<div class="col-xs-9">
+					<button class="btn btn-default" (click)="save()" type="button">Save</button>
+					<button class="btn btn-default">Clear</button>
+			</div>
+	</div>
+</form>
