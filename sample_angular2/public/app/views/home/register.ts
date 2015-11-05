@@ -1,5 +1,5 @@
 import {Component, bootstrap,FORM_DIRECTIVES,CORE_DIRECTIVES} from 'angular2/angular2';
-import {Http, HTTP_PROVIDERS} from 'angular2/http';
+import {Http, HTTP_PROVIDERS,Headers} from 'angular2/http';
 import {RegisterModel} from './register_model.ts';
 import {CheckListBox} from '../../directives/checklistbox.ts';
 import {RadioListBox} from '../../directives/radiolistbox.ts';
@@ -72,7 +72,14 @@ export class RegisterComponent {
  	}
  	save()
  	{
- 		alert(this.model.username);
+ 		this.http.post('./register_save', JSON.stringify(this.model), {
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      })
+ 		.map(r => r.json())
+ 		.subscribe(res=>this.res=res);
+
  	}
 }
 

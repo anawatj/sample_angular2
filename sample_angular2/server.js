@@ -7,18 +7,28 @@ var app = express();
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
+
+//homes.use(bodyParser.urlencoded());
+//homes.use(bodyParser.json());
+
 app.use('/master',masters);
 app.use('/home',homes);
 app.use("/public", express.static(path.join(__dirname, 'public')));
 app.use("/node_modules",express.static(path.join(__dirname,"node_modules")));
 app.set('views', __dirname + '/webapp/views');
 app.engine('html', require('ejs').renderFile);
-app.use(bodyParser.urlencoded());
 
+app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.all('*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+ });
 var server = app.listen(9000, function () {
   var host = server.address().address;
   var port = server.address().port;
